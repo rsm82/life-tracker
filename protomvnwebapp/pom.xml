@@ -7,6 +7,8 @@
   <version>1.0-SNAPSHOT</version>
   <name>protomvnwebapp Maven Webapp</name>
   <url>http://maven.apache.org</url>
+ 
+ <!-- Dependencies -->
   <dependencies>
     <dependency>
        <groupId>junit</groupId>

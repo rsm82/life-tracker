@@ -1,0 +1,38 @@
+* {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+	margin: 0;
+	pading: 0;
+	color: #fff;
+	background: repeat #1b1b1b;
+	/* background: #CC00FF; */
+	font-size: 14px;
+	text-shadow: #050505 0 -1px 0;
+	font-weight: bold;
+}
+
+#login-wrapper {
+	margin: 0 0 0 -160px;
+	width: 320px;
+	text-align: center;
+	z-index: 99;
+	position: absolute;
+	top: 0;
+	left: 50%;
+}
+
+#login-top {
+	height: 120px;
+	padding-top: 140px;
+	text-align: center;
+}
+
+label {
+	width: 70px;
+	float: left;
+	padding: 8px;
+	line-height: 14px;
+	margin-top: -4px;
+}

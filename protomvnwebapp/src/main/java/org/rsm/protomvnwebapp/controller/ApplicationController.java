@@ -30,4 +30,11 @@ public class ApplicationController {
 
       return "index";
    }
+   
+   @RequestMapping(value="/Welcome", method = RequestMethod.GET)
+   public String welcomeValid(ModelMap model) {
+      model.addAttribute("msgArgument", "Testing java script frameworks !");
+
+      return "welcome";
+   }
 }

@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.rsm.finjournal.ui</groupId>
+    <artifactId>finjournal-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <modules> 
+        <module>finjournal-common-utility</module>
+        <module>finjournal-data-layer</module>
+        <module>finjournal-model</module>
+        <module>finjournal-pojos</module>
+	<module>finjournal-security</module>
+        <module>finjournal-web</module> 
+    </modules>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>3.0.7.RELEASE</spring.version>
+    </properties>
+    
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <!--Set all projects to use Java 1.5 level sourcecode-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <disableXmlReport>true</disableXmlReport>
+                    <useFile>false</useFile>
+                    <includes>
+                        <!--Only tests in the "unit" package (and it's sub-packages) will run by
+                        default with every build. These should only be tests that do NOT use the
+                        database or Spring as they need to run very quickly. -->
+                        <include>unit/**</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!--invoke maven with the "itest" profile: mvn -P itest   -->
+
+        <profile>
+            <id>itest</id>
+            <build>
+                <defaultGoal>test</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.9</version>
+                        <executions>
+                            <execution>
+                                <id>surefire-it</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <disableXmlReport>true</disableXmlReport>
+                                    <useFile>false</useFile>
+                                    <includes>
+                                        <include>integration/**</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+</project>

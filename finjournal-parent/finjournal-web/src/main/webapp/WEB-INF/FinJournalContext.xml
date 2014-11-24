@@ -20,12 +20,12 @@
 	<import resource="classpath:/org/rsm/finjournal/services/config/fjServiceContext.xml" />
 
 	<!-- <bean id="applicationContextProvider"
-		class="gov.doc.uspto.patent.palm.expo.web.validator.ApplicationContextProvider">
+		class="org.rsm.finjournal.web.validator.ApplicationContextProvider">
 	</bean> -->
 	
 <!-- 
 
-	<import resource="classpath:/gov/doc/uspto/patent/prex/impl/config/PrexServiceContext.xml" /> -->
+	<import resource="classpath:/org/rsm/finjournal/impl/config/fjServiceContext.xml" /> -->
 
 
 </beans>

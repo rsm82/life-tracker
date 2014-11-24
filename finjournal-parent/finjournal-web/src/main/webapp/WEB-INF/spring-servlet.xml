@@ -23,8 +23,6 @@
 	<mvc:annotation-driven />
     <context:component-scan base-package="org.rsm.finjournal.web.controller" />
 
-<!--
- 	 <bean id="palmcant" class="gov.doc.uspto.patent.palm.expo.palmutilities.web.controller.PalmUtilitiesController"/> 	-->
 
 <!--     <bean
         id="jspViewResolver"

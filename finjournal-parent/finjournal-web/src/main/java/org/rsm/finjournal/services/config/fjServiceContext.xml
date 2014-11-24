@@ -13,7 +13,7 @@
 	<context:annotation-config />
 	<!--
 	<import
-		resource="classpath:/gov/uspto/patent/rbac/pojo/config/RbacPojoContext.xml" /> -->
+		resource="classpath:/org/rsm/finjournal/rbac/pojo/config/RbacPojoContext.xml" /> -->
 		
 	<!-- Add this tag to enable annotations transactions -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
@@ -32,8 +32,8 @@
 		destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:oracle:thin:@//dev-jackson-scan.etc.uspto.gov:1610/PALMDEV" />
-		<property name="username" value="prexusrp" />
+			value="jdbc:oracle:thin:@//dev-finjournal/FINDEV" />
+		<property name="username" value="finusr" />
 		<property name="password" value="test123" />
 		<property name="initialSize" value="1" />
 		<property name="maxActive" value="10" />

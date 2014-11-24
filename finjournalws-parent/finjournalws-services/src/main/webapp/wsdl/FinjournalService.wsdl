@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:urn="org:rsm:finjournal:service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FinjournalService"
+	targetNamespace="org:rsm:finjournal:service">
+	<wsdl:types>
+		<xsd:schema targetNamespace="org:rsm:finjournal:service">
+			<xsd:element name="FinancialSummaryRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="userId" maxOccurs="1" minOccurs="1"
+							type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="FinancialSummaryResponse">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="urn:ServiceReturn">
+							<xsd:sequence>
+								<xsd:element name="accountName" maxOccurs="1"
+									minOccurs="1" type="xsd:string" />
+								<xsd:element name="accountBalance" maxOccurs="1"
+									minOccurs="1" type="xsd:string" />
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:complexType name="ServiceReturn">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="ReturnMessageText" type="xsd:string" />
+					<xsd:element minOccurs="0" name="ErrorCode" type="xsd:string" />
+					<xsd:element minOccurs="0" name="ReasonCode" type="xsd:string" />
+					<xsd:element name="ServiceIdentifier" type="xsd:string" />
+					<xsd:element minOccurs="0" name="OperationIdentifier" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="FinancialSummaryRequest">
+		<wsdl:part element="urn:FinancialSummaryRequest" name="FinancialSummaryRequest" />
+	</wsdl:message>
+	<wsdl:message name="FinancialSummaryResponse">
+		<wsdl:part element="urn:FinancialSummaryResponse" name="FinancialSummaryResponse" />
+	</wsdl:message>
+	<wsdl:portType name="FinjournalService">
+		<wsdl:operation name="GetFinancialSummary">
+			<wsdl:input message="urn:FinancialSummaryRequest" />
+			<wsdl:output message="urn:FinancialSummaryResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="FinjournalServiceSOAP" type="urn:FinjournalService">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetFinancialSummary">
+			<soap:operation soapAction="org:rsm:finjournal:service/GetFinancialSummary" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="FinjournalService">
+		<wsdl:port binding="urn:FinjournalServiceSOAP" name="FinjournalServiceSOAP">
+			<soap:address location="http://www.example.org/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

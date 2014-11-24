@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd       
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd           
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<context:annotation-config />
+	<!--
+	<import
+		resource="classpath:/gov/uspto/patent/rbac/pojo/config/RbacPojoContext.xml" /> -->
+		
+	<!-- Add this tag to enable annotations transactions -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<context:component-scan base-package="org.rsm.finjournal" />
+
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
+	<!-- Use the below configuration for unit testing the individual tests. -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@//dev-jackson-scan.etc.uspto.gov:1610/PALMDEV" />
+		<property name="username" value="prexusrp" />
+		<property name="password" value="test123" />
+		<property name="initialSize" value="1" />
+		<property name="maxActive" value="10" />
+		<property name="maxIdle" value="5" />
+		<property name="maxWait" value="5000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="10" />
+	</bean>
+
+	<bean id="errorPropertiesConfig" class="org.rsm.finjournal.web.util.PropertiesUtil">
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<!-- <property name="locations" value = "classpath:Errors.properties"/> -->
+		<property name="locations">
+			<list>
+				<value>classpath:fjweb.properties</value>
+				<value>classpath:views.properties</value>
+
+				<!-- <value>classpath:PostTransaction.properties</value> -->
+			</list>
+		</property>
+
+	</bean>
+</beans>       
